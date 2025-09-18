@@ -355,7 +355,7 @@ def generate_profile_name(test_cmd: str) -> str:
 def parse_args(argv):
     # Handle version and help flags
     if "--version" in argv or "-v" in argv:
-        print("ttperf version 0.1.5")
+        print("ttperf version 0.1.6")
         sys.exit(0)
     
     if "--help" in argv or "-h" in argv:

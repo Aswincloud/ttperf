@@ -1,6 +1,6 @@
 [project]
 name = "ttperf"
-version = "0.1.5"
+version = "0.1.6"
 description = "A Python CLI wrapper for profiling Tenstorrent's TT-Metal tests"
 authors = [
     {name = "Aswin", email = "aswin@aswincloud.com"}
