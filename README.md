@@ -169,7 +169,7 @@ ttperf -l
    Dtype: bfloat16
    Layout: tile
 🏷️ Auto-generated profile name: temp_test_add
-▶️ Running: ./tt_metal/tools/profiler/profile_this.py -n temp_test_add -c "pytest temp_test_add.py"
+▶️ Running: ./tools/tracy/profile_this.py -n temp_test_add -c "pytest temp_test_add.py"
 
 ... (profiling output) ...
 

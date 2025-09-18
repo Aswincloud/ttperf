@@ -443,7 +443,7 @@ def build_profile_command(name, test_cmd):
     name_arg = f"-n {name}" if name else ""
     # Use absolute path to tt-metal directory
     tt_metal_path = "/home/ubuntu/tt-metal"
-    return f"{tt_metal_path}/tt_metal/tools/profiler/profile_this.py {name_arg} -c \"pytest {test_cmd}\""
+    return f"{tt_metal_path}/tools/tracy/profile_this.py {name_arg} -c \"pytest {test_cmd}\""
 
 
 def extract_config_from_csv(csv_path: str) -> dict:
