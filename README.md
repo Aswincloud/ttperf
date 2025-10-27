@@ -43,6 +43,27 @@ cd ttperf
 pip install -e .
 ```
 
+### Configuration
+
+ttperf automatically searches for your TT-Metal installation using a simple two-step process:
+
+```bash
+# Option 1: Set PYTHONPATH to your tt-metal location
+export PYTHONPATH=/path/to/your/tt-metal
+ttperf add
+
+# Option 2: Run from within tt-metal directory (or any subdirectory)
+cd /path/to/your/tt-metal
+ttperf relu
+# Or from a subdirectory
+cd /path/to/your/tt-metal/tests
+ttperf matmul
+```
+
+**tt-metal Path Search Order:**
+1. `PYTHONPATH` environment variable (if specified)
+2. Current working directory (walks up directory tree to find tt-metal root)
+
 ### Basic Usage
 
 ```bash

@@ -283,6 +283,18 @@ Arguments:
   test_path               Path to test file or specific test method
   operation               Operation name to profile (e.g., add, relu, matmul)
 
+Environment Variables:
+  PYTHONPATH             Path to tt-metal installation (optional)
+
+Configuration:
+  ttperf searches for tt-metal in the following order:
+  1. PYTHONPATH environment variable (if specified)
+  2. Current working directory (walks up to find tt-metal root)
+
+  Examples:
+    export PYTHONPATH=/path/to/tt-metal    # Use specific tt-metal location
+    cd /path/to/tt-metal && ttperf add     # Run from within tt-metal
+
 For more information, visit: https://github.com/Aswintechie/ttperf""")
 
 
@@ -355,7 +367,7 @@ def generate_profile_name(test_cmd: str) -> str:
 def parse_args(argv):
     # Handle version and help flags
     if "--version" in argv or "-v" in argv:
-        print("ttperf version 0.1.6")
+        print("ttperf version 0.1.7")
         sys.exit(0)
     
     if "--help" in argv or "-h" in argv:
@@ -439,11 +451,58 @@ def parse_args(argv):
     return name, test_cmd, args.debug, custom_config
 
 
+def find_tt_metal_path() -> str:
+    """Find tt-metal directory path in order of preference.
+    
+    Search order:
+    1. PYTHONPATH environment variable (if specified)
+    2. Current working directory (walk up to find tt-metal root)
+    """
+    # 1. Check PYTHONPATH environment variable
+    pythonpath = os.environ.get('PYTHONPATH', '')
+    if pythonpath:
+        for path in pythonpath.split(':'):
+            # Check if this path is tt-metal or contains tt-metal
+            if 'tt-metal' in path:
+                # If path ends with tt-metal, use it directly
+                if path.endswith('tt-metal') or os.path.basename(path) == 'tt-metal':
+                    if os.path.exists(path) and os.path.isdir(path):
+                        return path
+                # Otherwise, check if parent is tt-metal
+                parent = os.path.dirname(path)
+                if os.path.basename(parent) == 'tt-metal' and os.path.isdir(parent):
+                    return parent
+    
+    # 2. Use current working directory - walk up to find tt-metal root
+    cwd = os.getcwd()
+    current = cwd
+    
+    # Walk up the directory tree to find tt-metal
+    while current != '/':
+        if os.path.basename(current) == 'tt-metal':
+            return current
+        current = os.path.dirname(current)
+    
+    # If not found, return current directory (will fail with helpful error)
+    return cwd
+
+
 def build_profile_command(name, test_cmd):
     name_arg = f"-n {name}" if name else ""
-    # Use absolute path to tt-metal directory
-    tt_metal_path = "/home/ubuntu/tt-metal"
-    return f"{tt_metal_path}/tools/tracy/profile_this.py {name_arg} -c \"pytest {test_cmd}\""
+    tt_metal_path = find_tt_metal_path()
+    
+    # Check if the path exists and has the tracy tool
+    tracy_tool = os.path.join(tt_metal_path, "tools", "tracy", "profile_this.py")
+    if not os.path.exists(tracy_tool):
+        print(f"⚠️  Warning: Tracy tool not found at {tracy_tool}")
+        print(f"   Detected tt-metal path: {tt_metal_path}")
+        print(f"   Please ensure:")
+        print(f"   1. tt-metal is installed correctly, and")
+        print(f"   2. Either:")
+        print(f"      - Add tt-metal to PYTHONPATH: export PYTHONPATH=/path/to/tt-metal")
+        print(f"      - Run from within tt-metal directory: cd /path/to/tt-metal")
+    
+    return f"{tracy_tool} {name_arg} -c \"pytest {test_cmd}\""
 
 
 def extract_config_from_csv(csv_path: str) -> dict:

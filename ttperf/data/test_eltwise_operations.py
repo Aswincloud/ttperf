@@ -568,6 +568,23 @@ class TestEltwiseOperations:
     def test_mish(self, device):
         run_unary_op_test(ttnn.mish, lambda x: x * torch.tanh(torch.nn.functional.softplus(x)), device)
 
+    def test_hardmish(self, device):
+        def torch_hardmish(x: torch.Tensor) -> torch.Tensor:
+            x_f32 = x.to(torch.float32)
+            result_f32 = x_f32 * torch.clamp(x_f32 + 2.8, min=0.0, max=5.0) / 5
+
+            if x.dtype == torch.bfloat16:
+                # Simulate SFPSTORE truncating
+                result_int32 = result_f32.view(torch.int32)
+                shifted_int32 = torch.bitwise_right_shift(result_int32, 16)
+                truncated_int16 = shifted_int32.to(torch.int16)
+                final_result = truncated_int16.view(torch.bfloat16)
+            else:
+                final_result = result_f32
+
+            return final_result
+        run_unary_op_test(ttnn.hardmish, torch_hardmish, device)
+
     def test_cosh(self, device):
         run_unary_op_test(ttnn.cosh, torch.cosh, device, values="mixed")
 
@@ -1947,7 +1964,7 @@ def get_all_unary_operations() -> List[str]:
         "sigmoid_accurate", "elu", "leaky_relu", "threshold", "tril", "triu", 
         "digamma", "lgamma", "multigammaln", "polygamma", "heaviside", "logical_not_",
         "fill", "glu", "reglu", "geglu", "swiglu", "relu_max", "relu_min", "prelu",
-        "softshrink", "hardshrink", "var_hw", "std_hw"
+        "softshrink", "hardshrink", "var_hw", "std_hw", "hardmish"
     ]
 
 

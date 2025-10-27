@@ -337,6 +337,12 @@
       "layout": "tile",
       "values": "random"
     },
+    "hardmish": {
+      "shape": [1, 1, 32, 32],
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "values": "random"
+    },
     "cosh": {
       "shape": [1, 1, 32, 32],
       "dtype": "bfloat16",
