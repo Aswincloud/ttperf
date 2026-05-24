@@ -25,10 +25,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Aswintechie/ttperf"
-Repository = "https://github.com/Aswintechie/ttperf"
-Issues = "https://github.com/Aswintechie/ttperf/issues"
-Documentation = "https://github.com/Aswintechie/ttperf/blob/master/README.md"
+Homepage = "https://github.com/Aswincloud/ttperf"
+Repository = "https://github.com/Aswincloud/ttperf"
+Issues = "https://github.com/Aswincloud/ttperf/issues"
+Documentation = "https://github.com/Aswincloud/ttperf/blob/master/README.md"
 
 [project.scripts]
 ttperf = "ttperf.ttperf:main"
