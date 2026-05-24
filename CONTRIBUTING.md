@@ -6,7 +6,7 @@ Thank you for your interest in contributing to ttperf! This document provides gu
 
 1. **Fork the repository**
    ```bash
-   git clone https://github.com/Aswintechie/ttperf.git
+   git clone https://github.com/Aswincloud/ttperf.git
    cd ttperf
    ```
 
