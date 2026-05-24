@@ -134,6 +134,6 @@ ttperf add   # Uses prod version
 ### Support
 
 For issues or questions:
-- GitHub Issues: https://github.com/Aswintechie/ttperf/issues
-- Documentation: https://github.com/Aswintechie/ttperf
+- GitHub Issues: https://github.com/Aswincloud/ttperf/issues
+- Documentation: https://github.com/Aswincloud/ttperf
 
