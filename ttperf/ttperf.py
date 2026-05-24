@@ -295,7 +295,7 @@ Configuration:
     export PYTHONPATH=/path/to/tt-metal    # Use specific tt-metal location
     cd /path/to/tt-metal && ttperf add     # Run from within tt-metal
 
-For more information, visit: https://github.com/Aswintechie/ttperf""")
+For more information, visit: https://github.com/Aswincloud/ttperf""")
 
 
 def print_supported_operations():
