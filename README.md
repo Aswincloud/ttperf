@@ -5,8 +5,8 @@
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Version](https://img.shields.io/badge/version-0.1.6-orange.svg)
-[![GitHub issues](https://img.shields.io/github/issues/Aswintechie/ttperf)](https://github.com/Aswintechie/ttperf/issues)
-[![GitHub stars](https://img.shields.io/github/stars/Aswintechie/ttperf)](https://github.com/Aswintechie/ttperf/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/Aswincloud/ttperf)](https://github.com/Aswincloud/ttperf/issues)
+[![GitHub stars](https://img.shields.io/github/stars/Aswincloud/ttperf)](https://github.com/Aswincloud/ttperf/stargazers)
 
 **A streamlined CLI tool for profiling Tenstorrent's TT-Metal tests and extracting device kernel performance metrics**
 
@@ -36,7 +36,7 @@ pip install ttperf
 
 ```bash
 # Clone the repository
-git clone https://github.com/Aswintechie/ttperf.git
+git clone https://github.com/Aswincloud/ttperf.git
 cd ttperf
 
 # Install the package
@@ -270,12 +270,12 @@ This tool is an independent utility that interfaces with Tenstorrent's TT-Metal 
 
 ## 🐛 Issues
 
-If you encounter any issues, please [create an issue](https://github.com/Aswintechie/ttperf/issues) on GitHub.
+If you encounter any issues, please [create an issue](https://github.com/Aswincloud/ttperf/issues) on GitHub.
 
 ## 👨‍💻 Author
 
 **Aswin Z**
-- GitHub: [@Aswintechie](https://github.com/Aswintechie)
+- GitHub: [@Aswincloud](https://github.com/Aswincloud)
 - Portfolio: [aswinlocal.in](https://aswinlocal.in)
 
 ## 🌟 Acknowledgments
