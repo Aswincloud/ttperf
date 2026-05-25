@@ -24,6 +24,15 @@ classifiers = [
     "Topic :: System :: Benchmark",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+yaml = [
+    "PyYAML>=6.0",
+]
+
 [project.urls]
 Homepage = "https://github.com/Aswincloud/ttperf"
 Repository = "https://github.com/Aswincloud/ttperf"
@@ -45,3 +54,11 @@ ttperf = [
     "data/test_eltwise_operations.py",
     "data/operation_configs.json"
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short"
+
+[tool.coverage.run]
+source = ["ttperf"]
+omit = ["ttperf/data/*"]
