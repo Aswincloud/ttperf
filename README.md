@@ -85,8 +85,8 @@ ttperf add --shape 1,1,32,32 --dtype bfloat16 --layout tile
 ttperf relu --shape 1,1,64,64 --dtype float32 --layout row_major
 
 # Memory options
-ttperf add --dram      # Use DRAM memory (default)
-ttperf relu --l1       # Use L1 memory
+ttperf add --dram # Use DRAM memory (default)
+ttperf relu --l1 # Use L1 memory
 
 # CI-friendly (no emoji/decorative output)
 ttperf --quiet add
@@ -104,19 +104,19 @@ ttperf --verbose add
 ttperf [OPTIONS] [PROFILE_NAME] [pytest] <test_path_or_operation>
 
 Options:
-  --version               Show version information
-  --help, -h              Show this help message
-  --list-ops, -l          List all supported operations
-  --debug, -d             Show real-time profiler output
-  --verbose, -v           Enable verbose logging (debug messages)
-  --quiet, -q             Suppress decorative/emoji output (for CI)
-  --shape SHAPE           Tensor shape (e.g., 1,1,32,32)
-  --dtype DTYPE           Data type: bfloat16/bf16, float32/fp32/f32, int32/i32
-  --layout LAYOUT         Memory layout: tile, row_major/rm
-  --memory-config CONFIG  Memory configuration: dram, l1
-  --dram                  Use DRAM memory (default)
-  --l1                    Use L1 memory
-  --output-dir DIR        Copy generated CSV to this directory
+ --version Show version information
+ --help, -h Show this help message
+ --list-ops, -l List all supported operations
+ --debug, -d Show real-time profiler output
+ --verbose, -v Enable verbose logging (debug messages)
+ --quiet, -q Suppress decorative/emoji output (for CI)
+ --shape SHAPE Tensor shape (e.g., 1,1,32,32)
+ --dtype DTYPE Data type: bfloat16/bf16, float32/fp32/f32, int32/i32
+ --layout LAYOUT Memory layout: tile, row_major/rm
+ --memory-config CONFIG Memory configuration: dram, l1
+ --dram Use DRAM memory (default)
+ --l1 Use L1 memory
+ --output-dir DIR Copy generated CSV to this directory
 ```
 
 ## Config File
@@ -268,13 +268,13 @@ The tool extracts the following key metrics:
 ```
 ttperf/
 ├── ttperf/
-│   ├── __init__.py
-│   ├── ttperf.py              # Main CLI implementation
-│   └── data/
-│       ├── operation_configs.json
-│       └── test_eltwise_operations.py
+│ ├── __init__.py
+│ ├── ttperf.py # Main CLI implementation
+│ └── data/
+│ ├── operation_configs.json
+│ └── test_eltwise_operations.py
 ├── tests/
-│   └── test_ttperf.py         # Unit tests
+│ └── test_ttperf.py # Unit tests
 ├── pyproject.toml
 ├── README.md
 └── .gitignore
