@@ -12,33 +12,37 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8', '3.9', '3.10', '3.11']
-        
+
     steps:
     - name: Check out code
       uses: actions/checkout@v4
-      
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-        
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -e .
-        
+        pip install -e ".[dev]"
+
     - name: Test import
-      run: python -c "import ttperf; print('✅ ttperf imports successfully')"
-      
+      run: python -c "import ttperf; print('ttperf imports successfully')"
+
+    - name: Run unit tests with coverage
+      run: |
+        pytest tests/ -v --cov=ttperf --cov-report=term-missing --cov-report=xml
+
     - name: Test CLI help
       run: |
-        ttperf 2>&1 | grep -q "Usage:" && echo "✅ CLI help works" || echo "❌ CLI help failed"
-        
+        ttperf --help 2>&1 | grep -q "Usage:" && echo "CLI help works" || echo "CLI help failed"
+
     - name: Build package
       run: |
         pip install build
         python -m build
-        
+
     - name: Check package
       run: |
         pip install twine
