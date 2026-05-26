@@ -110,13 +110,13 @@ Options:
  --debug, -d Show real-time profiler output
  --verbose, -v Enable verbose logging (debug messages)
  --quiet, -q Suppress decorative/emoji output (for CI)
- --shape SHAPE Tensor shape (e.g., 1,1,32,32)
- --dtype DTYPE Data type: bfloat16/bf16, float32/fp32/f32, int32/i32
- --layout LAYOUT Memory layout: tile, row_major/rm
- --memory-config CONFIG Memory configuration: dram, l1
- --dram Use DRAM memory (default)
- --l1 Use L1 memory
- --output-dir DIR Copy generated CSV to this directory
+ --shape SHAPE         Tensor shape, e.g. 1,1,32,32 (default: 1,1,32,32)
+ --dtype DTYPE         Data type: bfloat16/bf16, float32/fp32/f32, int32/i32 (default: bfloat16)
+ --layout LAYOUT       Memory layout: tile, row_major/rm (default: tile)
+ --memory-config       Memory configuration: dram, l1 (default: dram)
+ --dram                Use DRAM memory (default)
+ --l1                  Use L1 memory
+ --output-dir DIR      Copy generated CSV to this directory
 ```
 
 ## ⚙️ Config File
@@ -242,7 +242,7 @@ The tool extracts the following key metrics:
 
 ### Shape Configuration
 - **Format**: Comma-separated integers (e.g., `1,1,32,32`)
-- **Default**: `(1, 1, 1024, 1024)`
+- **Default**: `1,1,32,32`
 - **Example**: `--shape 2,3,64,128`
 
 ### Data Type Configuration
