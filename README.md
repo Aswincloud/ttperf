@@ -315,7 +315,7 @@ If you encounter any issues, please [create an issue](https://github.com/Aswincl
 
 ## Supported by
 
-<a href="https://termius.com" target="_blank"><img src="https://termius.com/images/homepage/Termius-lockup-white.png" alt="Termius" width="200"/></a>
+<a href="https://termius.com" target="_blank"><img src="https://raw.githubusercontent.com/Aswincloud/ttperf/main/assets/termius-logo.png" alt="Termius" width="200"/></a>
 
 **[Termius](https://termius.com)** — Modern SSH client with cross-platform sync, team vaults, and one-click connections.
 
