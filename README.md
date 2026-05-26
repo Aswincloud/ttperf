@@ -12,7 +12,7 @@
 
 </div>
 
-## Features
+## ✨ Features
 
 - **Automated Profiling**: Seamlessly runs Tenstorrent's TT-Metal profiler with pytest
 - **CSV Analysis**: Automatically extracts and parses performance CSV files
@@ -25,7 +25,7 @@
 - **Config File Support**: Set defaults via `~/.ttperf.yaml` or `./.ttperf.yaml`
 - **CI-friendly**: `--quiet` flag suppresses decorative output; `--verbose` enables debug logging
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Installation
 
@@ -98,7 +98,7 @@ ttperf add --output-dir ./results/
 ttperf --verbose add
 ```
 
-## CLI Reference
+## 📋 CLI Reference
 
 ```
 ttperf [OPTIONS] [PROFILE_NAME] [pytest] <test_path_or_operation>
@@ -119,7 +119,7 @@ Options:
  --output-dir DIR Copy generated CSV to this directory
 ```
 
-## Config File
+## ⚙️ Config File
 
 Create `~/.ttperf.yaml` (global) or `./.ttperf.yaml` (project-local) to set defaults:
 
@@ -134,7 +134,7 @@ output_dir: ./results
 
 CLI flags always override config file values.
 
-## Usage Examples
+## 💡 Usage Examples
 
 ### Test File Profiling
 ```bash
@@ -218,7 +218,7 @@ DEVICE KERNEL DURATION [ns] total: 1234567.89 ns
 ============================================================
 ```
 
-## How It Works
+## 🔍 How It Works
 
 1. **Command Parsing**: Analyzes input arguments to determine profile name and test path/operation
 2. **Config Loading**: Reads `~/.ttperf.yaml` or `./.ttperf.yaml` for defaults (CLI flags take priority)
@@ -230,7 +230,7 @@ DEVICE KERNEL DURATION [ns] total: 1234567.89 ns
 8. **Performance Analysis**: Reads the CSV and calculates total device kernel duration
 9. **Output Copy**: Optionally copies the CSV to `--output-dir` if specified
 
-## Performance Metrics
+## 📊 Performance Metrics
 
 The tool extracts the following key metrics:
 
@@ -238,7 +238,7 @@ The tool extracts the following key metrics:
 - **CSV Path**: Location of the detailed profiling results
 - **Real-time Progress**: Live output during profiling (with `--debug`)
 
-## Configuration Options
+## 🔧 Configuration Options
 
 ### Shape Configuration
 - **Format**: Comma-separated integers (e.g., `1,1,32,32`)
@@ -255,7 +255,7 @@ The tool extracts the following key metrics:
 - **Default**: `tile`
 - **Example**: `--layout row_major`
 
-## Requirements
+## 📦 Requirements
 
 - Python 3.8+
 - pandas
@@ -263,7 +263,7 @@ The tool extracts the following key metrics:
 - pytest
 - PyYAML (optional, for config file support)
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 ttperf/
@@ -280,7 +280,7 @@ ttperf/
 └── .gitignore
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -308,12 +308,12 @@ If you encounter any issues, please [create an issue](https://github.com/Aswincl
 - GitHub: [@Aswincloud](https://github.com/Aswincloud)
 - Portfolio: [aswincloud.com](https://aswincloud.com)
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - Tenstorrent's TT-Metal development team for the profiling tools
 - Python community for excellent libraries like pandas
 
-## Supported by
+## 💙 Supported by
 
 <a href="https://termius.com" target="_blank"><img src="https://raw.githubusercontent.com/Aswincloud/ttperf/main/assets/termius-logo.png" alt="Termius" width="200"/></a>
 
@@ -324,3 +324,4 @@ If you encounter any issues, please [create an issue](https://github.com/Aswincl
 <div align="center">
 Made with care for the Tenstorrent TT-Metal community
 </div>
+
