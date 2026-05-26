@@ -667,7 +667,7 @@ def print_test_summary(
 def main() -> None:
     if len(sys.argv) < 2:
         print_help()
-        sys.exit(1)
+        sys.exit(0)
 
     name, test_cmd, debug, custom_config, quiet, output_dir = parse_args(sys.argv[1:])
     profile_cmd = build_profile_command(name, test_cmd)
