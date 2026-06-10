@@ -313,12 +313,6 @@ If you encounter any issues, please [create an issue](https://github.com/Aswincl
 - Tenstorrent's TT-Metal development team for the profiling tools
 - Python community for excellent libraries like pandas
 
-## 💙 Supported by
-
-<a href="https://termius.com" target="_blank"><img src="https://raw.githubusercontent.com/Aswincloud/ttperf/main/assets/termius-logo.png" alt="Termius" width="200"/></a>
-
-**[Termius](https://termius.com)** — Modern SSH client with cross-platform sync, team vaults, and one-click connections.
-
 ---
 
 <div align="center">
