@@ -7,8 +7,11 @@
 [![PyPI version](https://img.shields.io/pypi/v/ttperf.svg)](https://pypi.org/project/ttperf/)
 [![GitHub issues](https://img.shields.io/github/issues/Aswincloud/ttperf)](https://github.com/Aswincloud/ttperf/issues)
 [![GitHub stars](https://img.shields.io/github/stars/Aswincloud/ttperf)](https://github.com/Aswincloud/ttperf/stargazers)
+[![Website](https://img.shields.io/badge/website-ttperf.aswincloud.com-FFC061)](https://ttperf.aswincloud.com)
 
 **A streamlined CLI tool for profiling Tenstorrent's TT-Metal tests and extracting device kernel performance metrics**
+
+[**Website**](https://ttperf.aswincloud.com) · [PyPI](https://pypi.org/project/ttperf/) · [Issues](https://github.com/Aswincloud/ttperf/issues)
 
 </div>
 
