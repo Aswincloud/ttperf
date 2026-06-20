@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "ttperf",
+  "compatibility_date": "2026-06-01",
+  // Static landing page served straight from ./public — no Worker script.
+  // Cloudflare auto-deploys this on every push once the repo is connected.
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,1846 @@
+{
+  "count": 263,
+  "operations": [
+    {
+      "name": "abs",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "abs_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "acos",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "acos_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "acosh",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "acosh_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "add",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "add_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "add_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "addalpha",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "addalpha_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "addcdiv",
+      "category": "Ternary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "addcdiv_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "addcmul",
+      "category": "Ternary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "addcmul_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "angle",
+      "category": "Complex",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "asin",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "asin_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "asinh",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "asinh_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "assign",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "atan",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "atan2",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "atan2_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "atan_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "atanh",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "atanh_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bias_gelu",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bias_gelu_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bias_gelu_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bitwise_and",
+      "category": "Binary",
+      "dtype": "int32",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bitwise_left_shift",
+      "category": "Unary",
+      "dtype": "int32",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bitwise_not",
+      "category": "Unary",
+      "dtype": "int32",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bitwise_or",
+      "category": "Binary",
+      "dtype": "int32",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bitwise_right_shift",
+      "category": "Unary",
+      "dtype": "int32",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "bitwise_xor",
+      "category": "Binary",
+      "dtype": "int32",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "cbrt",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ceil",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ceil_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "celu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "clamp",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "clip",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "clip_binary",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "complex_recip",
+      "category": "Complex",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "complex_tensor",
+      "category": "Complex",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "conj",
+      "category": "Complex",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "cos",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "cos_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "cosh",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "cosh_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "cumprod",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "cumsum",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "deg2rad",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "deg2rad_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "digamma",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "digamma_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "div_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "div_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "divide",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "divide_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "elu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "eq",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "eq_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "eqz",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "erf",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "erf_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "erfc",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "erfc_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "erfinv",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "erfinv_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "exp",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "exp2",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "exp2_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "exp_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "expm1",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "expm1_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "fill",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "fill_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "fill_zero_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "floor",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "floor_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "fmod",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "fmod_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "frac",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "frac_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ge",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ge_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "geglu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x64"
+    },
+    {
+      "name": "gelu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "gelu_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "gez",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "glu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x64"
+    },
+    {
+      "name": "gt",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "gt_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "gtz",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardmish",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardshrink",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardshrink_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardsigmoid",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardsigmoid_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardswish",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardswish_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hardtanh",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "heaviside",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hypot",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "hypot_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "i0",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "i0_bw",
+      "category": "Backward",
+      "dtype": "float32",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "i1",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "identity",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "imag",
+      "category": "Complex",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "isclose",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "isfinite",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "isinf",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "isnan",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "isneginf",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "isposinf",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ldexp",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ldexp_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ldexp_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "le",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "le_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "leaky_relu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "lerp",
+      "category": "Ternary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "lerp_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "lez",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "lgamma",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "lgamma_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log10",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log10_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log1p",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log1p_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log2",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log2_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log_sigmoid",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "log_sigmoid_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logaddexp",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logaddexp2",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logaddexp2_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logaddexp2_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logaddexp_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logaddexp_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_and",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_and_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_not",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_not_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_or",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_or_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_xor",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logical_xor_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logit",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "logit_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "lt",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "lt_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ltz",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "mac",
+      "category": "Ternary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "max",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "max_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "maximum",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "mean",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "min",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "min_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "minimum",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "mish",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "mul",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "mul_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "mul_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "multigammaln",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "multigammaln_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "multiply",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "multiply_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ne",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "ne_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "neg",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "neg_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "nextafter",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "nez",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "polar",
+      "category": "Complex",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "polygamma",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "pow",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "pow_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "prelu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "prod",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rad2deg",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rad2deg_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rdiv",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "real",
+      "category": "Complex",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "reciprocal",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "reciprocal_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "reglu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x64"
+    },
+    {
+      "name": "relu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "relu6",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "relu6_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "relu_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "relu_max",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "relu_min",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "remainder",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "remainder_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "round",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "round_binary",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "round_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rpow",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rsqrt",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rsqrt_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rsub_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "rsub_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "selu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "selu_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sigmoid",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sigmoid_accurate",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sigmoid_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sign",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sign_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "signbit",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "silu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "silu_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sin",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sin_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sinh",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sinh_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "softplus",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "softshrink",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "softshrink_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "softsign",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "softsign_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sqrt",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sqrt_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "square",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "square_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "squared_difference",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "squared_difference_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "squared_difference_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "std",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "std_hw",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sub",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sub_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sub_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "subalpha",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "subalpha_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "subtract",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "subtract_",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "sum",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "swiglu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x64"
+    },
+    {
+      "name": "swish",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "tan",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "tan_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "tanh",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "tanh_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "tanhshrink",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "tanhshrink_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "threshold",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "tril",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "triu",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "trunc",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "trunc_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "var",
+      "category": "Reduction",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "var_hw",
+      "category": "Unary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "where",
+      "category": "Ternary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "where_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "xlogy",
+      "category": "Binary",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    },
+    {
+      "name": "xlogy_bw",
+      "category": "Backward",
+      "dtype": "bfloat16",
+      "layout": "tile",
+      "shape": "1x1x32x32"
+    }
+  ]
+}

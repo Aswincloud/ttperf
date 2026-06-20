@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ttperf — measure TT-Metal kernels in one command</title>
+<meta name="description" content="A CLI that profiles Tenstorrent TT-Metal kernels and prints the total device kernel duration in nanoseconds. One command, 263 operations, real numbers.">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ttperf — measure TT-Metal kernels in one command">
+<meta property="og:description" content="Profile any of 263 TT-Metal operations and read the device kernel duration in nanoseconds. One command.">
+<meta property="og:url" content="https://ttperf.aswincloud.com/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B0E11'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='18' font-weight='700' fill='%23FFC061' text-anchor='middle'%3Et%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="skip-link" href="#ops">Skip to operations</a>
+
+<header class="topbar">
+  <a class="wordmark" href="#top" aria-label="ttperf home">
+    <span class="wordmark-prompt">&gt;_</span> ttperf
+  </a>
+  <nav class="topnav" aria-label="Primary">
+    <a href="#how">How it works</a>
+    <a href="#ops">Operations</a>
+    <a href="#install">Install</a>
+    <a class="topnav-gh" href="https://github.com/Aswincloud/ttperf" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">TT-Metal kernel profiler · CLI</p>
+      <h1 id="hero-title">
+        Profile a Tenstorrent kernel<br>
+        in <span class="accent">one command.</span>
+      </h1>
+      <p class="lede">
+        <code>ttperf</code> runs TT-Metal's profiler, parses the result CSV, and
+        prints the total <strong>device kernel duration</strong> — the one number
+        you actually came for.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-copy="pip install ttperf" type="button">
+          <span class="btn-cmd">pip install ttperf</span>
+          <span class="btn-copy" aria-hidden="true">copy</span>
+        </button>
+        <a class="btn btn-ghost" href="https://pypi.org/project/ttperf/" target="_blank" rel="noopener">View on PyPI</a>
+      </div>
+      <ul class="hero-meta">
+        <li><b>263</b> operations</li>
+        <li><b>1</b> command</li>
+        <li>Python <b>3.8+</b></li>
+      </ul>
+    </div>
+
+    <!-- signature element: the instrument terminal -->
+    <div class="terminal" role="img" aria-label="Terminal showing ttperf add producing a device kernel duration of 1,234,567.89 nanoseconds">
+      <div class="terminal-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="terminal-title">aswin@tt-metal: ~</span>
+      </div>
+      <div class="terminal-body" id="term">
+        <div class="term-line"><span class="prompt">$</span> <span class="typed" id="typed"></span><span class="cursor" id="cursor">&#9608;</span></div>
+        <div class="term-out" id="term-out" hidden>
+          <div class="ln dim">Auto-generated profile name: temp_test_add</div>
+          <div class="ln dim">Running test...</div>
+          <div class="ln rule">============================================================</div>
+          <div class="ln">TEST SUMMARY</div>
+          <div class="ln rule">============================================================</div>
+          <div class="ln">Test: <span class="hl">add</span></div>
+          <div class="ln">Status: <span class="pass">PASSED</span></div>
+          <div class="ln dim">Configuration: shape=(1, 1, 32, 32), dtype=bfloat16, layout=tile</div>
+          <div class="ln dim">CSV Path: /tmp/profile_results.csv</div>
+          <div class="ln readout">
+            DEVICE KERNEL DURATION [ns] total:
+            <span class="ns" id="ns">0.00</span> ns
+          </div>
+          <div class="ln rule">============================================================</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ PROBLEM ============================ -->
+  <section class="band" aria-labelledby="why-title">
+    <div class="tick"><span class="tick-ns">0 ns</span></div>
+    <div class="wrap">
+      <h2 id="why-title" class="section-title">The measurement, not the ritual</h2>
+      <div class="beforeafter">
+        <div class="ba-col ba-before">
+          <p class="ba-label">Without ttperf</p>
+          <ol class="ba-steps">
+            <li>Locate <code>tools/tracy/profile_this.py</code></li>
+            <li>Hand-write the <code>pytest</code> invocation</li>
+            <li>Wait, then hunt for the generated CSV path in the logs</li>
+            <li>Open the CSV, find the right column</li>
+            <li>Sum <code>DEVICE KERNEL DURATION</code> by hand</li>
+          </ol>
+        </div>
+        <div class="ba-arrow" aria-hidden="true">→</div>
+        <div class="ba-col ba-after">
+          <p class="ba-label">With ttperf</p>
+          <div class="ba-oneliner">
+            <span class="prompt">$</span> ttperf add
+          </div>
+          <p class="ba-note">Profile name, CSV discovery, parsing, and the
+          total — handled. You read one number.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FEATURES ============================ -->
+  <section class="band band-alt" aria-labelledby="feat-title">
+    <div class="wrap">
+      <h2 id="feat-title" class="section-title">What it does</h2>
+      <div class="features">
+        <article class="feature">
+          <h3>Profile by name</h3>
+          <p><code>ttperf relu</code> maps an operation to its TT-Metal test and runs it. No path spelunking.</p>
+        </article>
+        <article class="feature">
+          <h3>Real CSV parsing</h3>
+          <p>Finds the profiler's output CSV, verifies it exists, and sums the device kernel duration with pandas.</p>
+        </article>
+        <article class="feature">
+          <h3>Shape it yourself</h3>
+          <p>Override tensor <code>--shape</code>, <code>--dtype</code>, <code>--layout</code>, and DRAM/L1 memory per run.</p>
+        </article>
+        <article class="feature">
+          <h3>Config files</h3>
+          <p>Set defaults in <code>~/.ttperf.yaml</code> or <code>./.ttperf.yaml</code>. CLI flags always win.</p>
+        </article>
+        <article class="feature">
+          <h3>CI-friendly</h3>
+          <p><code>--quiet</code> drops decorative output; <code>--verbose</code> turns on debug logging. Exit codes behave.</p>
+        </article>
+        <article class="feature">
+          <h3>Find the path itself</h3>
+          <p>Resolves your tt-metal root from <code>PYTHONPATH</code> or by walking up the working directory.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ HOW IT WORKS ============================ -->
+  <section id="how" class="band" aria-labelledby="how-title">
+    <div class="tick"><span class="tick-ns">parse → run → read</span></div>
+    <div class="wrap">
+      <h2 id="how-title" class="section-title">The pipeline</h2>
+      <ol class="pipeline">
+        <li><span class="step-k">parse</span><span class="step-v">Read args and config; figure out profile name + test path or operation.</span></li>
+        <li><span class="step-k">map</span><span class="step-v">Resolve an operation name to its <code>TestEltwiseOperations</code> method.</span></li>
+        <li><span class="step-k">run</span><span class="step-v">Invoke TT-Metal's tracy profiler over <code>pytest</code>, streaming output.</span></li>
+        <li><span class="step-k">extract</span><span class="step-v">Scrape the generated CSV path from the log and confirm it's on disk.</span></li>
+        <li><span class="step-k">sum</span><span class="step-v">Load the CSV and total <code>DEVICE KERNEL DURATION [ns]</code>.</span></li>
+        <li><span class="step-k">report</span><span class="step-v">Print the summary; optionally copy the CSV to <code>--output-dir</code>.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ OPERATIONS ============================ -->
+  <section id="ops" class="band band-alt" aria-labelledby="ops-title">
+    <div class="wrap">
+      <div class="ops-head">
+        <h2 id="ops-title" class="section-title">Every supported operation</h2>
+        <p class="ops-sub">Pulled from the package's own test suite — the same
+          list as <code>ttperf --list-ops</code>. Click any chip to copy its command.</p>
+      </div>
+
+      <div class="ops-controls">
+        <label class="search">
+          <span class="visually-hidden">Filter operations</span>
+          <input id="op-search" type="search" placeholder="Filter operations…  e.g. relu, bitwise, _bw" autocomplete="off" spellcheck="false">
+        </label>
+        <div class="op-filters" id="op-filters" role="group" aria-label="Filter by category"></div>
+      </div>
+
+      <p class="ops-count" id="ops-count" aria-live="polite"></p>
+      <div class="op-grid" id="op-grid"></div>
+      <p class="ops-empty" id="ops-empty" hidden>No operations match that filter.</p>
+    </div>
+  </section>
+
+  <!-- ============================ INSTALL ============================ -->
+  <section id="install" class="band" aria-labelledby="install-title">
+    <div class="tick"><span class="tick-ns">ship it</span></div>
+    <div class="wrap install-wrap">
+      <h2 id="install-title" class="section-title">Install</h2>
+      <div class="install-cards">
+        <div class="install-card">
+          <p class="install-k">From PyPI</p>
+          <button class="codecopy" data-copy="pip install ttperf" type="button"><code>pip install ttperf</code><span class="cc">copy</span></button>
+          <button class="codecopy" data-copy="pip install &quot;ttperf[yaml]&quot;" type="button"><code>pip install "ttperf[yaml]"</code><span class="cc">copy</span></button>
+        </div>
+        <div class="install-card">
+          <p class="install-k">First run</p>
+          <button class="codecopy" data-copy="export PYTHONPATH=/path/to/tt-metal" type="button"><code>export PYTHONPATH=/path/to/tt-metal</code><span class="cc">copy</span></button>
+          <button class="codecopy" data-copy="ttperf add" type="button"><code>ttperf add</code><span class="cc">copy</span></button>
+        </div>
+      </div>
+      <p class="install-note">Requires a Tenstorrent TT-Metal environment, Python 3.8+, and pytest. <code>PyYAML</code> is optional, for config files.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-wrap">
+    <div>
+      <span class="wordmark"><span class="wordmark-prompt">&gt;_</span> ttperf</span>
+      <p class="footer-tag">An independent profiling wrapper for Tenstorrent TT-Metal. Not affiliated with Tenstorrent Inc.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="https://github.com/Aswincloud/ttperf" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://pypi.org/project/ttperf/" target="_blank" rel="noopener">PyPI</a>
+      <a href="https://github.com/Aswincloud/ttperf/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://aswincloud.com" target="_blank" rel="noopener">Author</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="/app.js" defer></script>
+</body>
+</html>

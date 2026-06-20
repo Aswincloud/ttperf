@@ -1,0 +1,14 @@
+{
+  "name": "ttperf-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Landing page for ttperf — the TT-Metal kernel profiler CLI",
+  "scripts": {
+    "ops": "python3 web/generate_ops.py",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.103.0"
+  }
+}
