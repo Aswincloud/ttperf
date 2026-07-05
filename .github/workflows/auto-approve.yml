@@ -1,0 +1,26 @@
+name: Auto-approve admin PRs
+
+# Thin caller — the logic lives in the org-level reusable workflow so it's
+# defined once and reused everywhere. See Aswincloud/.github.
+on:
+  pull_request_target:
+    types: [opened, reopened, ready_for_review, synchronize]
+
+# This caller job needs no token of its own — the reusable workflow mints its
+# own App token and uses the org PAT. Pin to none for least privilege.
+permissions: {}
+
+concurrency:
+  group: auto-approve-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  approve:
+    uses: Aswincloud/.github/.github/workflows/auto-approve.yml@main
+    # Pass ONLY the three secrets the reusable workflow declares — not
+    # `secrets: inherit`, which would forward every org secret (Cloudflare,
+    # Resend, PATs, ...) into a workflow that has no business seeing them.
+    secrets:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+      WRITE_ACCESS_PAT: ${{ secrets.WRITE_ACCESS_PAT }}
