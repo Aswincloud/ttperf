@@ -1,0 +1,7 @@
+# Code Owners — Aswincloud
+# Global ownership: Aswin + admins. codeowners-bypass (the bot) is included so
+# the automated approval can satisfy code-owner review when required.
+* @Aswin-coder @Aswinmcw @Aswincloud/admins @Aswincloud/codeowners-bypass
+
+# CI / automation
+/.github/ @Aswin-coder @Aswinmcw @Aswincloud/admins @Aswincloud/codeowners-bypass
