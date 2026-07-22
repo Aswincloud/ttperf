@@ -464,7 +464,16 @@ def parse_args(argv: List[str]) -> Tuple:
         print_help()
         sys.exit(1)
 
-    if args.shape or args.dtype or args.layout or args.memory_config:
+    # Only treat config as "custom" when the user actually passed a config flag
+    # on the command line. We can't rely on parsed args because --memory-config
+    # defaults to 'dram', which would make every op run look custom.
+    config_flag_prefixes = ('--shape', '--dtype', '--layout', '--memory-config', '--dram', '--l1')
+    user_passed_config = any(
+        tok == flag or tok.startswith(flag + '=')
+        for tok in argv for flag in config_flag_prefixes
+    )
+
+    if user_passed_config:
         if test_cmd and "test_eltwise_operations.py" in test_cmd:
             shape = parse_shape(args.shape) if args.shape else (1, 1, 32, 32)
             dtype = validate_dtype(args.dtype) if args.dtype else "bfloat16"
