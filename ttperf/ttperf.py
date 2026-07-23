@@ -622,11 +622,13 @@ def extract_test_config_and_status(output: str, csv_path: Optional[str] = None) 
         'test_name': 'unknown'
     }
 
-    test_match = re.search(r'::([^:]+)::test_([a-zA-Z_]+)', output)
+    # Anchor on '::test_' so we capture the test function name (works for both
+    # function- and class-based tests) and never the filename (e.g. test_x.py).
+    test_match = re.search(r'::test_([a-zA-Z0-9_]+)', output)
     if test_match:
-        result['test_name'] = test_match.group(2)
+        result['test_name'] = test_match.group(1)
     else:
-        test_method_match = re.search(r'test_([a-zA-Z_]+)', output)
+        test_method_match = re.search(r'\btest_([a-zA-Z0-9_]+)', output)
         if test_method_match:
             result['test_name'] = test_method_match.group(1)
 
@@ -651,12 +653,20 @@ def extract_test_config_and_status(output: str, csv_path: Optional[str] = None) 
     if result['test_name'].startswith('bitwise_') and not result['config'].get('dtype'):
         result['config']['dtype'] = 'int32'
 
-    if 'PASSED' in output or '1 passed' in output:
-        result['status'] = 'PASSED'
-    elif 'FAILED' in output or '1 failed' in output:
+    # Prefer pytest's summary counts (robust against stray 'error' substrings).
+    passed = re.search(r'(\d+) passed', output)
+    failed = re.search(r'(\d+) failed', output)
+    errored = re.search(r'(\d+) error', output)
+    if failed and int(failed.group(1)) > 0:
         result['status'] = 'FAILED'
-    elif 'ERROR' in output or 'error' in output:
+    elif errored and int(errored.group(1)) > 0:
         result['status'] = 'ERROR'
+    elif passed and int(passed.group(1)) > 0:
+        result['status'] = 'PASSED'
+    elif 'PASSED' in output:
+        result['status'] = 'PASSED'
+    elif 'FAILED' in output:
+        result['status'] = 'FAILED'
 
     return result
 
@@ -817,9 +827,12 @@ def print_per_case_summary(results: List[dict], quiet: bool = False) -> None:
     print("=" * 60)
 
 
-def run_single(name, test_cmd, debug, custom_config, quiet, output_dir) -> None:
-    """Profile a single test target and print the standard summary."""
-    if not debug:
+def run_single(name, test_cmd, debug, custom_config, quiet, output_dir) -> bool:
+    """Profile a single test target and print the standard summary.
+
+    Returns True if the test passed, False otherwise.
+    """
+    if not debug and not quiet:
         print("Running test...")
 
     full_output = profile_one(name, test_cmd, debug)
@@ -845,9 +858,14 @@ def run_single(name, test_cmd, debug, custom_config, quiet, output_dir) -> None:
         shutil.copy2(csv_path, dest)
         print(f"CSV copied to: {dest}")
 
+    return test_info['status'] == 'PASSED'
 
-def run_per_case(name, cases, debug, quiet, output_dir) -> None:
-    """Profile each test case individually and print a per-case summary."""
+
+def run_per_case(name, cases, debug, quiet, output_dir) -> bool:
+    """Profile each test case individually and print a per-case summary.
+
+    Returns True only if every case passed.
+    """
     if not quiet:
         print(f"Found {len(cases)} test cases — profiling each individually.\n")
 
@@ -858,7 +876,8 @@ def run_per_case(name, cases, debug, quiet, output_dir) -> None:
         bracket = re.search(r'\[(.*)\]', case['label'])
         suffix = sanitize_for_name(bracket.group(1) if bracket else case['label'])
         case_name = f"{name}_{suffix}"
-        print(f"[{i}/{len(cases)}] {case['label']}")
+        if not quiet:
+            print(f"[{i}/{len(cases)}] {case['label']}")
 
         full_output = profile_one(case_name, case['cmd'], debug)
 
@@ -889,6 +908,8 @@ def run_per_case(name, cases, debug, quiet, output_dir) -> None:
 
     print_per_case_summary(results, quiet=quiet)
 
+    return all(r['status'] == 'PASSED' for r in results)
+
 
 def main() -> None:
     if len(sys.argv) < 2:
@@ -909,14 +930,17 @@ def main() -> None:
 
     try:
         if len(cases) <= 1:
-            run_single(name, cases[0]['cmd'], debug, custom_config, quiet, output_dir)
+            ok = run_single(name, cases[0]['cmd'], debug, custom_config, quiet, output_dir)
         else:
-            run_per_case(name, cases, debug, quiet, output_dir)
+            ok = run_per_case(name, cases, debug, quiet, output_dir)
     except SystemExit:
         raise
     except Exception as e:
         logger.debug("Exception during result processing", exc_info=True)
         print(f"\n❌ Error processing results: {e}")
+        sys.exit(1)
+
+    if not ok:
         sys.exit(1)
 
 
