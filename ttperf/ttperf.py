@@ -119,6 +119,33 @@ def get_device_kernel_duration(csv_path: str) -> float:
     return df[target_col].sum()
 
 
+def find_csv_path(output: str) -> Optional[str]:
+    """Extract the CSV path from profiler output without exiting on failure."""
+    match = re.search(r"OPs csv generated at: (.+?\.csv)", output)
+    if not match:
+        return None
+    csv_path = match.group(1).strip()
+    return csv_path if os.path.exists(csv_path) else None
+
+
+def safe_device_kernel_duration(csv_path: str) -> Optional[float]:
+    """Sum DEVICE KERNEL DURATION for all rows in a CSV, or None on failure.
+
+    Summing every row is correct for a single test case: a simple op has one
+    row, and a composite op (e.g. swiglu) has one row per sub-op that together
+    make up that case's total device time.
+    """
+    try:
+        df = pd.read_csv(csv_path)
+        target_col = "DEVICE KERNEL DURATION [ns]"
+        if target_col not in df.columns:
+            return None
+        return float(df[target_col].sum())
+    except Exception:
+        logger.debug("Could not read duration from %s", csv_path, exc_info=True)
+        return None
+
+
 def extract_test_methods_from_file(file_path: str) -> dict:
     """Dynamically extract test method names from the test file."""
     try:
@@ -327,6 +354,8 @@ Options:
   --dram                  Use DRAM memory (default)
   --l1                    Use L1 memory
   --output-dir DIR        Copy generated CSV to this directory after profiling
+  --no-split              Profile all parametrized cases in a single run
+                          (default: each case is profiled individually)
 
 Arguments:
   PROFILE_NAME            Optional name for the profiling session
@@ -432,6 +461,7 @@ def parse_args(argv: List[str]) -> Tuple:
     parser.add_argument('--dram', action='store_const', const='dram', dest='memory_config')
     parser.add_argument('--l1', action='store_const', const='l1', dest='memory_config')
     parser.add_argument('--output-dir', type=str, default=file_config.get('output_dir'))
+    parser.add_argument('--no-split', action='store_true')
 
     args, remaining = parser.parse_known_args(argv)
 
@@ -500,7 +530,7 @@ def parse_args(argv: List[str]) -> Tuple:
         if not args.quiet:
             print(f"Auto-generated profile name: {name}")
 
-    return name, test_cmd, args.debug, custom_config, args.quiet, args.output_dir
+    return name, test_cmd, args.debug, custom_config, args.quiet, args.output_dir, args.no_split
 
 
 def find_tt_metal_path() -> str:
@@ -673,20 +703,69 @@ def print_test_summary(
     print("=" * 60)
 
 
-def main() -> None:
-    if len(sys.argv) < 2:
-        print_help()
-        sys.exit(0)
+def sanitize_for_name(label: str) -> str:
+    """Turn a test-case label into a filesystem/profile-safe name fragment."""
+    cleaned = re.sub(r'[^A-Za-z0-9]+', '_', label).strip('_')
+    return (cleaned[:80] or 'case')
 
-    name, test_cmd, debug, custom_config, quiet, output_dir = parse_args(sys.argv[1:])
+
+def enumerate_test_cases(test_cmd: str, quiet: bool = False) -> List[Dict[str, str]]:
+    """Enumerate individual (parametrized) test cases for a test target.
+
+    Uses ``pytest --collect-only`` to discover every parametrized case, so each
+    case can be profiled in its own isolated run. Returns a list of
+    ``{'cmd': <node id>, 'label': <in-file id>}``. Falls back to a single entry
+    when collection is not possible or only one case exists.
+    """
+    file_path = test_cmd.split('::', 1)[0]
+
+    def single() -> List[Dict[str, str]]:
+        label = test_cmd.split('::', 1)[1] if '::' in test_cmd else os.path.basename(test_cmd)
+        return [{'cmd': test_cmd, 'label': label}]
+
+    # An explicit parametrized case (ends with ']') can't be split further.
+    if test_cmd.endswith(']'):
+        return single()
+
+    # Override addopts (tt-metal sets -vvs, which forces the verbose tree view)
+    # so --collect-only -q emits flat, parseable node ids.
+    collect_cmd = (
+        f'python3 -m pytest "{test_cmd}" --collect-only -q '
+        f'-o addopts="" -p no:cacheprovider'
+    )
+    try:
+        result = subprocess.run(
+            collect_cmd, shell=True, capture_output=True, text=True, timeout=600
+        )
+    except Exception as e:
+        logger.debug("Test collection failed: %s", e)
+        return single()
+
+    cases: List[Dict[str, str]] = []
+    seen = set()
+    for line in result.stdout.splitlines():
+        line = line.strip()
+        if '::' not in line:
+            continue
+        if line.startswith(('<', 'ERROR', 'E ', 'warning', 'WARNING', 'platform', 'rootdir')):
+            continue
+        in_file_id = line.split('::', 1)[1]
+        node_cmd = f"{file_path}::{in_file_id}"
+        if node_cmd in seen:
+            continue
+        seen.add(node_cmd)
+        cases.append({'cmd': node_cmd, 'label': in_file_id})
+
+    return cases or single()
+
+
+def profile_one(name: str, test_cmd: str, debug: bool) -> str:
+    """Run the tracy profiler once for a single test target; return its output."""
     profile_cmd = build_profile_command(name, test_cmd)
-
     logger.debug("Profile command: %s", profile_cmd)
 
     if debug:
         print(f"Running: {profile_cmd}\n")
-    else:
-        print(f"Running test...")
 
     process = subprocess.Popen(
         profile_cmd,
@@ -709,25 +788,135 @@ def main() -> None:
         sys.exit(1)
 
     process.wait()
-    full_output = "".join(output_lines)
+    return "".join(output_lines)
+
+
+def print_per_case_summary(results: List[dict], quiet: bool = False) -> None:
+    """Print an isolated per-case performance summary (durations never summed)."""
+    print("\n" + "=" * 60)
+    print(f"PER-CASE PERFORMANCE SUMMARY ({len(results)} cases)")
+    print("=" * 60)
+    for i, r in enumerate(results, 1):
+        print(f"[{i}] {r['label']}")
+        print(f"    Status: {r['status']}")
+        cfg = r.get('config') or {}
+        if cfg:
+            parts = [f"{k}={cfg[k]}" for k in ('shape', 'dtype', 'layout', 'memory_config') if k in cfg]
+            if parts:
+                print(f"    Config: {', '.join(parts)}")
+        if r.get('duration') is not None:
+            print(f"    DEVICE KERNEL DURATION [ns]: {r['duration']:.2f} ns")
+        else:
+            print(f"    DEVICE KERNEL DURATION [ns]: n/a")
+        if r.get('csv_path'):
+            print(f"    CSV: {r['csv_path']}")
+        if r.get('copied'):
+            print(f"    Copied to: {r['copied']}")
+        if i != len(results):
+            print("-" * 60)
+    print("=" * 60)
+
+
+def run_single(name, test_cmd, debug, custom_config, quiet, output_dir) -> None:
+    """Profile a single test target and print the standard summary."""
+    if not debug:
+        print("Running test...")
+
+    full_output = profile_one(name, test_cmd, debug)
+
+    csv_path = find_csv_path(full_output)
+    if not csv_path:
+        print("\n❌ CSV path not found in output (or file missing).")
+        print("Raw output:")
+        print(full_output)
+        sys.exit(1)
+
+    duration = safe_device_kernel_duration(csv_path)
+    if duration is None:
+        print("\n❌ Could not read DEVICE KERNEL DURATION from CSV.")
+        sys.exit(1)
+
+    test_info = extract_test_config_and_status(full_output, csv_path)
+    print_test_summary(test_info, csv_path, duration, custom_config, quiet=quiet)
+
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+        dest = os.path.join(output_dir, os.path.basename(csv_path))
+        shutil.copy2(csv_path, dest)
+        print(f"CSV copied to: {dest}")
+
+
+def run_per_case(name, cases, debug, quiet, output_dir) -> None:
+    """Profile each test case individually and print a per-case summary."""
+    if not quiet:
+        print(f"Found {len(cases)} test cases — profiling each individually.\n")
+
+    results: List[dict] = []
+    for i, case in enumerate(cases, 1):
+        # Use just the parametrization part as the profile-name suffix to avoid
+        # repeating the method name (which is already in the base name).
+        bracket = re.search(r'\[(.*)\]', case['label'])
+        suffix = sanitize_for_name(bracket.group(1) if bracket else case['label'])
+        case_name = f"{name}_{suffix}"
+        print(f"[{i}/{len(cases)}] {case['label']}")
+
+        full_output = profile_one(case_name, case['cmd'], debug)
+
+        entry: dict = {
+            'label': case['label'],
+            'status': 'unknown',
+            'duration': None,
+            'csv_path': None,
+            'config': {},
+        }
+        csv_path = find_csv_path(full_output)
+        if csv_path:
+            entry['csv_path'] = csv_path
+            entry['duration'] = safe_device_kernel_duration(csv_path)
+            info = extract_test_config_and_status(full_output, csv_path)
+            entry['status'] = info['status']
+            entry['config'] = info['config']
+            if output_dir:
+                os.makedirs(output_dir, exist_ok=True)
+                dest = os.path.join(output_dir, os.path.basename(csv_path))
+                shutil.copy2(csv_path, dest)
+                entry['copied'] = dest
+        else:
+            entry['status'] = 'ERROR (no CSV)'
+            logger.debug("No CSV produced for case %s", case['label'])
+
+        results.append(entry)
+
+    print_per_case_summary(results, quiet=quiet)
+
+
+def main() -> None:
+    if len(sys.argv) < 2:
+        print_help()
+        sys.exit(0)
+
+    name, test_cmd, debug, custom_config, quiet, output_dir, no_split = parse_args(sys.argv[1:])
+
+    # Operation-name runs map to a single (non-parametrized) test method, so
+    # there's nothing to split — profile them directly.
+    is_operation = "test_eltwise_operations.py" in test_cmd
+
+    cases = [{'cmd': test_cmd, 'label': test_cmd}]
+    if not no_split and not is_operation:
+        if not quiet:
+            print("Collecting test cases...")
+        cases = enumerate_test_cases(test_cmd, quiet=quiet)
 
     try:
-        csv_path = extract_csv_path(full_output)
-        duration = get_device_kernel_duration(csv_path)
-        test_info = extract_test_config_and_status(full_output, csv_path)
-        print_test_summary(test_info, csv_path, duration, custom_config, quiet=quiet)
-
-        if output_dir:
-            os.makedirs(output_dir, exist_ok=True)
-            dest = os.path.join(output_dir, os.path.basename(csv_path))
-            shutil.copy2(csv_path, dest)
-            print(f"CSV copied to: {dest}")
-
+        if len(cases) <= 1:
+            run_single(name, cases[0]['cmd'], debug, custom_config, quiet, output_dir)
+        else:
+            run_per_case(name, cases, debug, quiet, output_dir)
+    except SystemExit:
+        raise
     except Exception as e:
         logger.debug("Exception during result processing", exc_info=True)
         print(f"\n❌ Error processing results: {e}")
-        print("Raw output:")
-        print(full_output)
         sys.exit(1)
 
 
