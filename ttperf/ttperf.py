@@ -340,7 +340,7 @@ Config File:
 Environment Variables:
   PYTHONPATH             Path to tt-metal installation (optional)
 
-For more information, visit: https://github.com/Aswincloud/ttperf""")
+For more information, visit: https://ttperf.aswincloud.com""")
 
 
 def print_supported_operations(quiet: bool = False) -> None:
