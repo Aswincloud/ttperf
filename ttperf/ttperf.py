@@ -10,6 +10,7 @@ import ast
 import json
 import argparse
 import logging
+import shlex
 from typing import Dict, List, Optional, Tuple
 
 try:
@@ -558,7 +559,7 @@ def find_tt_metal_path() -> str:
 
 def build_profile_command(name: str, test_cmd: str) -> str:
     """Build the tracy profile command string."""
-    name_arg = f"-n {name}" if name else ""
+    name_arg = f"-n {shlex.quote(name)}" if name else ""
     tt_metal_path = find_tt_metal_path()
 
     tracy_tool = os.path.join(tt_metal_path, "tools", "tracy", "profile_this.py")
@@ -571,7 +572,8 @@ def build_profile_command(name: str, test_cmd: str) -> str:
         print(f"      - Add tt-metal to PYTHONPATH: export PYTHONPATH=/path/to/tt-metal")
         print(f"      - Run from within tt-metal directory: cd /path/to/tt-metal")
 
-    return f"{tracy_tool} {name_arg} -c \"pytest {test_cmd}\""
+    pytest_cmd = f"pytest {shlex.quote(test_cmd)}"
+    return f"{shlex.quote(tracy_tool)} {name_arg} -c {shlex.quote(pytest_cmd)}"
 
 
 def extract_config_from_csv(csv_path: str) -> dict:
@@ -739,13 +741,13 @@ def enumerate_test_cases(test_cmd: str, quiet: bool = False) -> List[Dict[str, s
 
     # Override addopts (tt-metal sets -vvs, which forces the verbose tree view)
     # so --collect-only -q emits flat, parseable node ids.
-    collect_cmd = (
-        f'python3 -m pytest "{test_cmd}" --collect-only -q '
-        f'-o addopts="" -p no:cacheprovider'
-    )
+    collect_cmd = [
+        'python3', '-m', 'pytest', test_cmd, '--collect-only', '-q',
+        '-o', 'addopts=', '-p', 'no:cacheprovider'
+    ]
     try:
         result = subprocess.run(
-            collect_cmd, shell=True, capture_output=True, text=True, timeout=600
+            collect_cmd, capture_output=True, text=True, timeout=600
         )
     except Exception as e:
         logger.debug("Test collection failed: %s", e)

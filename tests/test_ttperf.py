@@ -11,6 +11,7 @@ import sys
 import csv
 import tempfile
 import unittest
+import shlex
 from unittest.mock import patch, MagicMock
 
 # ---------------------------------------------------------------------------
@@ -355,6 +356,14 @@ class TestEnumerateTestCases(unittest.TestCase):
             cases = t.enumerate_test_cases("/abs/tests/foo.py")
         self.assertEqual(len(cases), 1)
 
+    def test_collection_passes_target_as_an_argument(self):
+        fake = MagicMock(stdout="tests/foo.py::test_bar\n")
+        with patch('subprocess.run', return_value=fake) as run:
+            t.enumerate_test_cases("tests/foo.py;echo injected")
+        command = run.call_args.args[0]
+        self.assertEqual(command[3], "tests/foo.py;echo injected")
+        self.assertNotIn("shell", run.call_args.kwargs)
+
 
 # ---------------------------------------------------------------------------
 # print_per_case_summary
@@ -392,6 +401,20 @@ class TestPrintPerCaseSummary(unittest.TestCase):
         out = self._capture(results)
         self.assertIn("n/a", out)
         self.assertIn("ERROR (no CSV)", out)
+
+
+class TestBuildProfileCommand(unittest.TestCase):
+
+    @patch.object(t, 'find_tt_metal_path', return_value='/opt/tt-metal')
+    @patch('os.path.exists', return_value=True)
+    def test_quotes_profile_name_and_test_target(self, _exists, _path):
+        command = t.build_profile_command(
+            'profile; echo injected',
+            'tests/test file.py; echo injected'
+        )
+        args = shlex.split(command)
+        self.assertEqual(args[2], 'profile; echo injected')
+        self.assertEqual(args[4], "pytest 'tests/test file.py; echo injected'")
 
 
 # ---------------------------------------------------------------------------
